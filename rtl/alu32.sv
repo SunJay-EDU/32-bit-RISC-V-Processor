@@ -1,13 +1,13 @@
 module alu32 (
 
-// 2 32-bit input wires (a,b), a 4-bit control signal (selects the operation), and a 32-bit output register.
+// 2 32-bit input wires (a, b), a 4-bit control signal (selects the operation), and a 32-bit output register.
 // The ALU performs arithmetic and logical operations.
 
     input logic [31:0] alu_in_a,
     input logic [31:0] alu_in_b,
     input logic [3:0] alu_control,
     output logic [31:0] alu_out,
-    output logic        zero
+    output logic zero
 );
 
     // Combinational logic: output changes whenever inputs change.
@@ -15,7 +15,7 @@ module alu32 (
 
     always_comb begin
 
-        alu_out = 32'b0; // Default output, prevents latch inference.
+        alu_out = 32'b0; // Default output that prevents latch inference.
 
         // Selects which operation to perform based on alu_control.
         case (alu_control)
@@ -53,7 +53,7 @@ module alu32 (
 
             4'b1001: alu_out = $signed(alu_in_a) >>> alu_in_b[4:0];
             // SRA: Arithmetic right shift. Preserves the sign bit.
-            // >>> performs a signed right shift when the input is signed.
+            // performs a signed right shift when the input is signed.
 
             default: alu_out = 32'b0;
             // Unused control signals default to zero.
@@ -62,7 +62,7 @@ module alu32 (
 
     end
 
-    // Zero flag: HIGH when the ALU result is zero.
+    // Zero flag: 1 (true/high) when the ALU result is zero.
     // TLDR: A zero flag gives a 1 (true) when an output/result is supposed to be zero (10-10, 20-20, -20+20, etc.). While a output of 0 (false) is given when the result is not supposed to be zero.
 
     assign zero = (alu_out == 32'b0);
