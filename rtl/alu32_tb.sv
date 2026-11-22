@@ -1,4 +1,3 @@
-
 module alu32_tb;
 
     // Testbench inputs and outputs.
@@ -8,10 +7,10 @@ module alu32_tb;
     logic [31:0] alu_in_b;
     logic [3:0]  alu_control;
     logic [31:0] alu_out;
-    logic        zero;
+    logic zero;
 
-    // Instantiate our ALU.
-    // This creates an actual instance of the alu32 module.
+    // Instantiate our ALU. Sorta similar to Java's OOP
+    // This creates an instance of the alu32 module.
 
     alu32 uut (
         .alu_in_a(alu_in_a),
@@ -21,7 +20,7 @@ module alu32_tb;
         .zero(zero)
     );
 
-    // Apply test inputs and check the results.
+    // Applies test inputs and check the results.
 
     initial begin
 
